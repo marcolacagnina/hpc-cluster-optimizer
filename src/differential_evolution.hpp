@@ -1,7 +1,7 @@
 #ifndef DIFFERENTIAL_EVOLUTION_HPP
 #define DIFFERENTIAL_EVOLUTION_HPP
 
-#include "include/cluster.hpp"
+#include "../include/cluster.hpp"
 #include <vector>
 #include <functional>
 #include "energy.hpp"

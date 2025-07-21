@@ -12,16 +12,18 @@ include_directories("/opt/homebrew/opt/libomp/include")
 set(CMAKE_CXX_STANDARD 20)
 
 
-add_executable(LJOptimizer main.cpp
+add_executable(LJOptimizer 
+	src/main.cpp
         include/point3d.hpp
         include/point3d.hpp
         include/point3d.cpp
         include/cluster.hpp
         include/cluster.cpp
-        energy.hpp
-        differential_evolution.hpp
-        differential_evolution.cpp
-        runner.hpp
-        runner.cpp
+        src/energy.hpp
+        src/differential_evolution.hpp
+        src/differential_evolution.cpp
+        src/runner.hpp
+        src/runner.cpp
 )
+
 

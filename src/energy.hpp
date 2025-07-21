@@ -1,7 +1,7 @@
 #ifndef ENERGY_HPP
 #define ENERGY_HPP
 
-#include "include/point3d.hpp"
+#include "../include/point3d.hpp"
 #include <vector>
 #include <cmath>
 
