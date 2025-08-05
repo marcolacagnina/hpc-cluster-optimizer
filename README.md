@@ -1,37 +1,99 @@
-# An HPC implementation of a revisited DE global optimization for LJ Cluster
-This project is a solver designed to optimize the Geometry of the Lennard-Jones atoms clusters. 
+# HPC implementation of a revisited DE global optimization for atomic LJ Cluster
 
-## Build with CMake
-This project uses CMake as its build system, follow the steps below to build the project using it.
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Language](https://img.shields.io/badge/Language-C%2B%2B-blue.svg)
+![Parallelism](https://img.shields.io/badge/Parallelism-OpenMP-green.svg)
+![Build System](https://img.shields.io/badge/Build-CMake-orange.svg)
+
+An efficient, parallel solver written in C++ and OpenMP for the global optimization of atomic clusters using a custom Differential Evolution algorithm. 
+
+This project focuses on achieving the best trade-off between solution quality and execution time for NP-hard structural problems.
+
+## Table of Contents
+1. [A Success Case: The LJ22 Global Minimum](#a-success-case-the-lj22-global-minimum)
+2. [About The Project](#about-the-project)
+3. [Getting Started](#getting-started)
+   - [Prerequisites](#prerequisites)
+   - [Building the Project](#building-the-project)
+4. [Usage](#usage)
+5. [Key Features](#key-features)
+6. [Results](#results)
+7. [License](#license)
+
+## A Success Case: The LJ22 Global Minimum
+
+To demonstrate the solver's capability, we present a complete optimization run for the LJ22 cluster. This is the largest cluster for which our algorithm consistently found the **exact global minimum (0.00% error)**.
+
+The figure below shows the transition from a semi-ordered, high-energy initial configuration to the final, perfectly symmetric, low-energy structure.
+
+![Optimization of the LJ22 Cluster](comparison_N22.png)
+
+This visual result highlights the solver's ability to navigate the complex energy landscape and converge to the correct, highly ordered geometric structure.
+
+## About The Project
+This project tackles the geometric optimization of atomic clusters, a classic NP-hard problem in computational physics. The goal is to find the arrangement of N atoms that minimizes the potential energy, described by potentials such as Lennard-Jones.
+
+The core of this work is a custom-developed `jDE-like` Differential Evolution solver. A key feature is its "stagnation and reset" mechanism, which acts as an implicit Basin-Hopping strategy, proving highly effective at escaping the deceptive local minima that characterize these energy landscapes.
+
+The implementation is heavily optimized for performance, leveraging C++ and OpenMP to create a high-performance computing tool capable of solving complex clusters in minutes, a task that would require hours with standard high-level libraries.
+
+## Getting Started
+Follow these steps to build and run the project locally.
 
 ### Prerequisites
+* A C++ compiler with **OpenMP support** (e.g., GCC, or LLVM/Clang from Homebrew on macOS).
+* **CMake** (version 3.20 or higher).
 
-- CMake (version 3.20 or higher)
-- OpenMP
-
-### Building the project
-To build the executable, make sure your default compiler has access to OpenMP.
-In the following commands you can see an example of using a specific compiler g++15 for MacOS.
-
-Then run:
+**Note for macOS users**: Apple's default Clang does not support OpenMP. You must install a compatible compiler via [Homebrew](https://brew.sh):
 ```bash
-$ mkdir build
-$ cd build
-$ CC=gcc-15 CXX=g++-15 cmake .. -D CMAKE_BUILD_TYPE=Release
-$ make
+brew install llvm
+# or
+brew install gcc
 ```
 
-The executable is created into the folder `build`, it is called `LJOptimizer`.
 
-### Run the executables
-Make sure you specify the right number of OpenMP threads `OMP_NUM_THREADS` according to your machine
+### Building the project
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/marcolacagnina/hpc-cluster-optimizer.git
+    cd hpc-cluster-optimizer/
+    ```
 
-`LJOptimizer` can be executed through
+2.  **Configure and build with CMake:**
+    ```bash
+    mkdir build
+    cd build
+    CC=gcc-15 CXX=g++-15 cmake .. -D CMAKE_BUILD_TYPE=Release
+    make
+    ```
+
+
+The executable `LJOptimizer` is created in the `build/` directory.
+
+
+### Usage
+To run the solver, navigate to the build directory and execute the program. 
+It is crucial to specify the number of threads via the `OMP_NUM_THREADS` environment variable.
+
 ```bash
 $ OMP_NUM_THREADS=8 ./LJOptimizer
 ```
 
-## Output
-The output is a `.xyz` file corresponding to the best configuration of atoms found.
-It is suggested to view the output file via VMD or PyMOL, which is created after execution within the `build` folder.
+The output wil be`.xyz` file corresponding to the best configuration of atoms found, named `best_cluster.xyz`. You can find it in the main project directory.
+This file contains the coordinates of the best-found atomic configuration. 
+It is suggested to view the output file with software like `VMD` or `PyMOL`.
+
+### Key Features
+* **Custom DE Algorithm**: A jDE-like solver with a powerful "stagnation and reset" mechanism to escape local minima.
+* **Multi-threading with OpenMP**: Parallelizes initialization, the main evolutionary loop, and the reset mechanism.
+* **Cache-Friendly Memory Layout**: Uses "flat" data structures to maximize cache locality.
+* **Zero-Copy Updates**: Employs std::swap for near-instantaneous population updates.
+* **SIMD Vectorization**: The energy function is optimized with #pragma omp simd.
+
+ 
+### Results
+The solver was benchmarked on Lennard-Jones clusters up to N=52. It consistently finds high-quality solutions (error < 4.5%) and demonstrates a speedup of >150x compared to the standard, parallel implementation of Differential Evolution in Python/SciPy.
+
+### License
+Distributed under the MIT License. See `LICENSE` file for more information.
 
