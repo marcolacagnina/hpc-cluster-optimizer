@@ -22,7 +22,7 @@ This project focuses on achieving the best trade-off between solution quality an
 
 ## A Success Case: The LJ22 Global Minimum
 
-To demonstrate the solver's capability, we present a complete optimization run for the LJ22 cluster. This is the largest cluster for which our algorithm consistently found the **exact global minimum (0.00% error)**.
+To demonstrate the solver's capability, I present a complete optimization run for the LJ22 cluster. This is the largest cluster for which the algorithm consistently found the **exact global minimum (0.00% error)**.
 
 The figure below shows the transition from a semi-ordered, high-energy initial configuration to the final, perfectly symmetric, low-energy structure.
 
@@ -79,7 +79,7 @@ It is crucial to specify the number of threads via the `OMP_NUM_THREADS` environ
 OMP_NUM_THREADS=8 ./LJOptimizer
 ```
 
-The output wil be`.xyz` file corresponding to the best configuration of atoms found, named `best_cluster.xyz`. You can find it in the main project directory.
+The output will be a `.xyz` file corresponding to the best configuration of atoms found, named `best_cluster.xyz`. You can find it in the main project directory.
 This file contains the coordinates of the best-found atomic configuration. 
 It is suggested to view the output file with software like `VMD` or `PyMOL`.
 
