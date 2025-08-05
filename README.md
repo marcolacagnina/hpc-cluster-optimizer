@@ -76,7 +76,7 @@ To run the solver, navigate to the build directory and execute the program.
 It is crucial to specify the number of threads via the `OMP_NUM_THREADS` environment variable.
 
 ```bash
-$ OMP_NUM_THREADS=8 ./LJOptimizer
+OMP_NUM_THREADS=8 ./LJOptimizer
 ```
 
 The output wil be`.xyz` file corresponding to the best configuration of atoms found, named `best_cluster.xyz`. You can find it in the main project directory.
