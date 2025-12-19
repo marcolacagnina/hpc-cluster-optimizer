@@ -36,7 +36,7 @@ This visual result highlights the solver's ability to navigate the complex energ
 ## About The Project
 This project tackles the geometric optimization of atomic clusters, a classic NP-hard problem in computational physics. The goal is to find the arrangement of N atoms that minimizes the potential energy, described by potentials such as Lennard-Jones.
 
-The core of this work is a custom-developed `jDE-like` [**Differential Evolution**](https://ieeexplore.ieee.org/document/534790) solver. A key feature is its "stagnation and reset" mechanism, which acts as an implicit Basin-Hopping strategy, proving highly effective at escaping the deceptive local minima that characterize these energy landscapes.
+The core of this work is a custom-developed `jDE-like` [**Differential Evolution**](https://link.springer.com/article/10.1023/A:1008202821328) solver. A key feature is its "stagnation and reset" mechanism, which acts as an implicit Basin-Hopping strategy, proving highly effective at escaping the deceptive local minima that characterize these energy landscapes.
 
 The implementation is heavily optimized for performance, leveraging C++ and OpenMP to create a high-performance computing tool capable of solving complex clusters in minutes, a task that would require hours with standard high-level libraries.
 
