@@ -9,6 +9,8 @@ An efficient, parallel solver written in C++ and OpenMP for the global optimizat
 
 This project focuses on achieving the best trade-off between solution quality and execution time for NP-hard structural problems.
 
+You can get a full explanation of this work by consulting the Jupyter notebook `Reports.ipynb`.
+
 ## Table of Contents
 1. [A Success Case: The LJ22 Global Minimum](#a-success-case-the-lj22-global-minimum)
 2. [About The Project](#about-the-project)
