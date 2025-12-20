@@ -25,7 +25,7 @@ You can get a full explanation of this work by consulting the Jupyter notebook `
 
 ## A Success Case: The LJ22 Global Minimum
 
-To demonstrate the solver's capability, I present a complete optimization run for the LJ22 cluster. This is the largest cluster for which the algorithm consistently found the **exact global minimum (0.00% error)**.
+To demonstrate the solver's capability, a complete optimization run for the LJ22 cluster is presented. This is the largest cluster for which the algorithm consistently found the **exact global minimum (0.00% error)**.
 
 The figure below shows the transition from a semi-ordered, high-energy initial configuration to the final, perfectly symmetric, low-energy structure.
 
